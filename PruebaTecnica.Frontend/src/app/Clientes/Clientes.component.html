@@ -1,0 +1,85 @@
+<div class="container-fluid">
+  <div class="container-fluid d-flex justify-content-end mt-4">
+    <button class="btn btn-outline-primary" (click)="viewCrud = !viewCrud">
+      {{ viewCrud ? "Volver a lista de clientes" : "Agregar nuevo cliente" }}
+    </button>
+  </div>
+  <div
+    class="container-fluid d-flex flex-column justify-content-center"
+    *ngIf="!viewCrud; else crud"
+  >
+    <div>
+      <p class="fs-4 fw-bold text-decoration-underline">Lista de Clientes</p>
+    </div>
+    <div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Fecha de nacimiento</th>
+            <th scope="col">Genero</th>
+            <th scope="col">Tipo de identificación</th>
+            <th scope="col">Numero de identificación</th>
+            <th scope="col">¿Maneja?</th>
+            <th scope="col">¿Usa lentes?</th>
+            <th scope="col">¿Tiene diabetes?</th>
+            <th scope="col">¿Tiene otras enfermedades?</th>
+            <th scope="col">Otras enfermedades</th>
+            <th scope="col">Activo actualmente</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="clientes != null">
+          <tr *ngFor="let item of clientes;let indice=index">
+            <td>{{ item.Nombre }}</td>
+            <td>{{ item.Apellido }}</td>
+            <td>{{ item.Edad }}</td>
+            <td>{{ item.Genero }}</td>
+            <td>{{ item.TipoDeIdentificacion }}</td>
+            <td>{{ item.NumeroDeIdentificacion }}</td>
+            <td>{{ item.Maneja }}</td>
+            <td>{{ item.UsaLentes }}</td>
+            <td>{{ item.TieneDiabetes }}</td>
+            <td>{{ item.TieneOtrasEnfermedades }}</td>
+            <td>{{ item.OtrasEnfermedades }}</td>
+            <td>{{ item.ActivoActualmente }}</td>
+            <td>
+              <a class="btn btn-outline-dark btn-sm mx-1" role="button" (click)="AccionEditarCliente(item.Id)">
+                Editar
+              </a>
+              <a class="btn btn-outline-danger btn-sm mx-1" role="button" (click)="ShowEliminarCliente(item)">
+                Eliminar
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <ng-template #crud>
+    <app-CrudClientes
+      [TipoDeAccion]="tipoDeAccion"
+      [IdCliente]="idCliente"
+      (OnNotificacion)="OnNotification($event)"
+      (OnAccionComplete)="OnCompletarAccionActual($event)"
+      (OnCancelar)="OnCancelarAccionActual()"
+    ></app-CrudClientes>
+  </ng-template>
+  <ng-template #eliminar let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-title">¿Desea eliminar el cliente?</h4>
+      <button type="button" class="btn-close" aria-describedby="modal-title" (click)="modal.dismiss()"></button>
+    </div>
+    <div class="modal-body">
+      <p><strong>Está seguro de que desea eliminar el cliente <span class="text-primary">"{{ clienteAEliminar.Apellido + ", " + clienteAEliminar.Nombre }}"</span> ?</strong></p>
+      <p>Toda la información asociada a este cliente se eliminará de forma permanente.
+      <span class="text-danger">Esta operación no se puede deshacer.</span>
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss()">Cancelar</button>
+      <button type="button" class="btn btn-danger" (click)="modal.close(clienteAEliminar.Id)">Eliminar</button>
+    </div>
+  </ng-template>
+</div>

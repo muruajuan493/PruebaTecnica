@@ -1,0 +1,179 @@
+<div class="container d-flex flex-column justify-content-center">
+  <form *ngIf="clienteFrontView != null" class="row g-3" (ngSubmit)="onSubmint()" [formGroup]="clienteFrontView">
+    <h3>{{ tituloDeCrud }}</h3>
+
+    <!-- Nombre -->
+    <div class="col-6">
+      <label for="inputNombre" class="form-label">Nombre</label>
+      <input
+        type="text"
+        id="inputNombre"
+        class="form-control"
+        formControlName="Nombre"
+        [ngClass]="{ 'is-invalid': submitted && form['Nombre'].errors }"
+        placeholder="Ingrese el nombre"
+      />
+      <div *ngIf="submitted && form['Nombre'].errors" class="invalid-feedback">
+        <div *ngIf="form['Nombre'].errors['required']">El nombre es obligatorio</div>
+      </div>
+    </div>
+
+    <!-- Apellido -->
+    <div class="col-6">
+      <label for="inputApellido" class="form-label">Apellido</label>
+      <input
+        type="text"
+        id="inputApellido"
+        class="form-control"
+        formControlName="Apellido"
+        [ngClass]="{ 'is-invalid': submitted && form['Apellido'].errors }"
+        placeholder="Ingrese el apellido"
+      />
+      <div *ngIf="submitted && form['Apellido'].errors" class="invalid-feedback">
+        <div *ngIf="form['Apellido'].errors['required']">El apellido es obligatorio</div>
+      </div>
+    </div>
+
+    <!-- Genero -->
+    <div class="col-4">
+      <label for="inputGenero" class="form-label">Genero</label>
+      <select
+        class="form-select"
+        aria-label="Default select example"
+        formControlName="IdGenero"
+        [ngClass]="{ 'is-invalid': submitted && form['IdGenero'].errors }"
+      >
+        <option *ngFor="let item of clienteModel.Generos" [value]="item.Value">{{ item.Key }}</option>
+      </select>
+      <div *ngIf="submitted && form['IdGenero'].errors" class="invalid-feedback">
+        <div *ngIf="form['IdGenero'].errors['required']">Debe seleccionar un genero</div>
+      </div>
+    </div>
+
+    <!-- FechaDeNacimiento -->
+    <div class="col-4">
+      <label for="inputFechaDeNacimiento" class="form-label">FechaDeNacimiento</label>
+      <input
+        type="date"
+        id="inputFechaDeNacimiento"
+        class="form-control"
+        formControlName="FechaDeNacimiento"
+        [ngClass]="{ 'is-invalid': submitted && form['FechaDeNacimiento'].errors }"
+        placeholder="YYYY/MM/DD"
+      />
+      <div *ngIf="submitted && form['FechaDeNacimiento'].errors" class="invalid-feedback">
+        <div *ngIf="form['FechaDeNacimiento'].errors['required']">Debe seleccionar una fecha de nacimiento</div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="row">
+        <!-- TipoDeIdentificacion -->
+        <div class="col-4">
+          <label for="inputTipoDeIdentificacion" class="form-label">Tipo de identificación</label>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            formControlName="IdTipoDeIdentificacion"
+            [ngClass]="{ 'is-invalid': submitted && form['IdTipoDeIdentificacion'].errors }"
+          >
+            <option *ngFor="let item of clienteModel.TiposDeIdentificacion" [value]="item.Value">{{ item.Key }}</option>
+          </select>
+          <div *ngIf="submitted && form['IdTipoDeIdentificacion'].errors" class="invalid-feedback">
+            <div *ngIf="form['IdTipoDeIdentificacion'].errors['required']">Debe seleccionar un tipo de identificación</div>
+          </div>
+        </div>
+
+        <!-- NumeroDeIdentificacion -->
+        <div class="col-4">
+          <label for="inputNumeroDeIdentificacion" class="form-label">Número de identificación</label>
+          <input
+            type="text"
+            id="inputNumeroDeIdentificacion"
+            class="form-control"
+            formControlName="NumeroDeIdentificacion"
+            [ngClass]="{ 'is-invalid': submitted && form['NumeroDeIdentificacion'].errors }"
+            placeholder="Ingrese número de identificación"
+          />
+          <div *ngIf="submitted && form['NumeroDeIdentificacion'].errors" class="invalid-feedback">
+            <div *ngIf="form['NumeroDeIdentificacion'].errors['required']">El número de identificación es obligatorio</div>
+            <div *ngIf="form['NumeroDeIdentificacion'].errors['maxlength']">El número de identificación no puede superar los 8 caracteres</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="row">
+        <!-- Maneja -->
+        <div class="col-12">
+          <label for="inputManeja" class="form-label">¿Maneja?</label>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="switchManeja" formControlName="Maneja">
+            <label class="form-check-label" for="switchManeja">{{ form['Maneja'].value ? 'Si' : 'No' }}</label>
+          </div>
+        </div>
+
+        <!-- UsaLentes -->
+        <div class="col-12">
+          <label for="inputUsaLentes" class="form-label">¿Usa lentes?</label>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="switchUsaLentes" formControlName="UsaLentes">
+            <label class="form-check-label" for="switchUsaLentes">{{ form['UsaLentes'].value ? 'Si' : 'No' }}</label>
+          </div>
+        </div>
+
+        <!-- EsDiabetica -->
+        <div class="col-12">
+          <label for="inputEsDiabetica" class="form-label">¿Tiene diabetes?</label>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="switchTieneDiabetes" formControlName="TieneDiabetes">
+            <label class="form-check-label" for="switchTieneDiabetes">{{ form['TieneDiabetes'].value ? 'Si' : 'No' }}</label>
+          </div>
+        </div>
+
+        <!-- PadeceOtrasEnfermedades -->
+        <div class="col-12">
+          <label for="inputPadeceOtrasEnfermedades" class="form-label">¿Posee otras enfermedades?</label>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="switchPadeceOtrasEnfermedades" formControlName="TieneOtrasEnfermedades">
+            <label class="form-check-label" for="switchPadeceOtrasEnfermedades">{{ form['TieneOtrasEnfermedades'].value ? 'Si' : 'No' }}</label>
+          </div>
+        </div>
+
+        <!-- OtrasEnfermedades -->
+        <div class="col-12" *ngIf="form['TieneOtrasEnfermedades'].value">
+          <label for="inputOtrasEnfermedades" class="form-label">Ingrese las enfermedades del cliente</label>
+          <textarea
+            id="inputOtrasEnfermedades"
+            class="form-control"
+            rows="5"
+            formControlName="OtrasEnfermedades"
+            placeholder="Ingrese las enfermedades separadas por coma"
+          ></textarea>
+          <div *ngIf="submitted && form['PadeceOtrasEnfermedades'].value && form['OtrasEnfermedades'].errors" class="invalid-feedback">
+            <div *ngIf="form['OtrasEnfermedades'].errors['required']">Debe ingresar las otras enfermedades del cliente</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ActivoActualmente -->
+    <div class="col-6">
+      <label for="inputManeja" class="form-label">¿Activo actualmente?</label>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="checkActivo" formControlName="ActivoActualmente">
+        <label class="form-check-label" for="switchManeja">{{ form['ActivoActualmente'].value ? 'Si' : 'No' }}</label>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary my-3">
+        {{ textoDeSubmit }}
+      </button>
+      <button class="btn btn-secondary mx-3" type="reset" (click)="onCancelar()">
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

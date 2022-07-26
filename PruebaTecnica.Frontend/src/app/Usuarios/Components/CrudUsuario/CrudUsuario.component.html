@@ -1,0 +1,88 @@
+<div class="container d-flex flex-column justify-content-center">
+  <form *ngIf="usuarioFrontView != null" class="row g-3" (ngSubmit)="onSubmint()" [formGroup]="usuarioFrontView">
+    <h3>{{ tituloDeCrud }}</h3>
+
+    <!-- Nombre Completo -->
+    <div class="col-6">
+      <label for="inputNombreCompleto" class="form-label">Nombre completo</label>
+      <input
+        type="text"
+        id="inputNombreCompleto"
+        class="form-control"
+        formControlName="NombreCompleto"
+        [ngClass]="{ 'is-invalid': submitted && form['NombreCompleto'].errors }"
+        placeholder="Ingrese el nombre"
+      />
+      <div *ngIf="submitted && form['NombreCompleto'].errors" class="invalid-feedback">
+        <div *ngIf="form['NombreCompleto'].errors['required']">Nombre completo es obligatorio</div>
+      </div>
+    </div>
+
+    <!-- Nombre de Usuario -->
+    <div class="col-6">
+      <label for="inputNombreDeUsuario" class="form-label">Nombre de usuario</label>
+      <input
+        type="text"
+        id="inputNombreDeUsuario"
+        class="form-control"
+        formControlName="NombreDeUsuario"
+        [ngClass]="{ 'is-invalid': submitted && form['NombreDeUsuario'].errors }"
+        placeholder="Ingrese el usuario"
+      />
+      <div *ngIf="submitted && form['NombreDeUsuario'].errors" class="invalid-feedback">
+        <div *ngIf="form['NombreDeUsuario'].errors['required']">Nombre de usuario es obligatorio</div>
+      </div>
+    </div>
+
+    <!-- Contraseña -->
+    <div class="col-6">
+      <label for="inputContraseña" class="form-label">Contraseña</label>
+      <input
+        id="inputContraseña"
+        type="password"
+        class="form-control"
+        formControlName="Contraseña"
+        [ngClass]="{ 'is-invalid': submitted && form['Contraseña'].errors }"
+        placeholder="Ingrese una contraseña"
+      />
+      <div *ngIf="submitted && form['Contraseña'].errors" class="invalid-feedback">
+        <div *ngIf="form['Contraseña'].errors['required']">Contraseña es obligatorio</div>
+      </div>
+    </div>
+
+    <!-- Repeat Contraseña -->
+    <div class="col-6">
+      <label for="inputRepeaTContraseña" class="form-label">Repetir contraseña</label>
+      <input
+        id="inputRepeaTContraseña"
+        type="password"
+        class="form-control"
+        formControlName="RepeaTContraseña"
+        [ngClass]="{ 'is-invalid': submitted && form['RepeaTContraseña'].errors }"
+        placeholder="Ingrese el apellido"
+      />
+      <div *ngIf="submitted && form['RepeaTContraseña'].errors" class="invalid-feedback">
+        <div *ngIf="form['RepeaTContraseña'].errors['required']">Repetir contraseña es requerido</div>
+			  <div *ngIf="form['RepeaTContraseña'].errors['mustMatch']">Las contraseñas debden de coincidir</div>
+      </div>
+    </div>
+
+    <!-- ActivoActualmente -->
+    <div class="col-6">
+      <label for="inputManeja" class="form-label">¿Activo actualmente?</label>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="checkActivo" formControlName="ActivoActualmente">
+        <label class="form-check-label" for="switchManeja">{{ form['ActivoActualmente'].value ? 'Si' : 'No' }}</label>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary my-3">
+        {{ textoDeSubmit }}
+      </button>
+      <button class="btn btn-secondary mx-3" type="reset" (click)="onCancelar()">
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

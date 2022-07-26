@@ -1,0 +1,13 @@
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand fs-4">Ficticia S.A.</a>
+    <div class="justify-content-start">
+      <div class="badge bg-primary text-wrap fs-6 mx-3" *ngIf="UserName != null && UserName.length > 0">
+        {{ UserName }}
+      </div>
+      <button class="btn btn-sm btn-outline-danger me-3" type="button" (click)="logout()">
+        LogOut
+      </button>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="container-fluid d-flex justify-content-end mt-4">
+    <button class="btn btn-outline-primary" (click)="viewCrud = !viewCrud">
+      {{ viewCrud ? "Volver a lista de usuarios" : "Agregar nuevo usuario" }}
+    </button>
+  </div>
+  <div
+    class="container-fluid d-flex flex-column justify-content-center"
+    *ngIf="!viewCrud; else crud"
+  >
+    <div>
+      <p class="fs-4 fw-bold text-decoration-underline">Lista de Usuarios</p>
+    </div>
+    <div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Nombre completo</th>
+            <th scope="col">Nombre de usuario</th>
+            <th scope="col">Activo actualmente</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="usuarios != null">
+          <tr *ngFor="let item of usuarios;let indice=index">
+            <td>{{ item.NombreCompleto }}</td>
+            <td>{{ item.NombreDeUsuario }}</td>
+            <td>{{ item.ActivoActualmente }}</td>
+            <td>
+              <a class="btn btn-outline-dark btn-sm mx-1" role="button" (click)="AccionEditarUsuario(item.Id)">
+                Editar
+              </a>
+              <a class="btn btn-outline-danger btn-sm mx-1" role="button" (click)="ShowEliminarUsuario(item)">
+                Eliminar
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <ng-template #crud>
+    <app-CrudUsuario
+      [TipoDeAccion]="tipoDeAccion"
+      [IdUsuario]="idUsuario"
+      (OnNotificacion)="OnNotification($event)"
+      (OnAccionComplete)="OnCompletarAccionActual($event)"
+      (OnCancelar)="OnCancelarAccionActual()"
+    ></app-CrudUsuario>
+  </ng-template>
+  <ng-template #eliminar let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-title">¿Desea eliminar el usuario?</h4>
+      <button type="button" class="btn-close" aria-describedby="modal-title" (click)="modal.dismiss()"></button>
+    </div>
+    <div class="modal-body">
+      <p><strong>Está seguro de que desea eliminar el usuario <span class="text-primary">"{{ usuarioAEliminar.NombreCompleto }}"</span> ?</strong></p>
+      <p>Toda la información asociada a este usuario se eliminará de forma permanente.
+      <span class="text-danger">Esta operación no se puede deshacer.</span>
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss()">Cancelar</button>
+      <button type="button" class="btn btn-danger" (click)="modal.close(usuarioAEliminar.Id)">Eliminar</button>
+    </div>
+  </ng-template>
+</div>

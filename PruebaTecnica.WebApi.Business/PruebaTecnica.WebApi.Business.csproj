@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CEE65273-FD2D-4A70-896E-B77EB9E3ACC1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PruebaTecnica.WebApi.Business</RootNamespace>
+    <AssemblyName>PruebaTecnica.WebApi.Business</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Managers\Clientes\Models\DtoClienteEnCRUD.cs" />
+    <Compile Include="Managers\Clientes\Models\DtoClienteEnLista.cs" />
+    <Compile Include="Managers\Usuarios\Models\DtoUsuarioEnLista.cs" />
+    <Compile Include="Managers\Usuarios\Models\DtoUsuarioEnCRUD.cs" />
+    <Compile Include="Managers\Authorization\GestorDeAutorizacion.cs" />
+    <Compile Include="Managers\Authorization\Models\DtoLogin.cs" />
+    <Compile Include="Managers\Clientes\GestorDeClientes.cs" />
+    <Compile Include="Managers\Usuarios\GestorDeUsuarios.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Managers\Clientes\Validacion\" />
+    <Folder Include="Managers\Usuarios\Validacion\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PruebaTecnica.WebApi.DataAccess\PruebaTecnica.WebApi.DataAccess.csproj">
+      <Project>{ba34f8eb-1c3a-4644-ae91-49ee4a6cb2a8}</Project>
+      <Name>PruebaTecnica.WebApi.DataAccess</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="4e659dc4-4e9a-4f75-a646-37acd7199d6e" ChangeDateTime="07/20/2022 20:38:04">
+    <Property Name="ElementName" Value="[dbo].[Clientes].[Activo]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Clientes]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ActivoActualmente" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="403972c0-5fe9-42ba-8039-75f440619ce9" ChangeDateTime="07/20/2022 20:42:00">
+    <Property Name="ElementName" Value="[dbo].[EnfermedadesPorClientes].[Idcliente]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[EnfermedadesPorClientes]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IdCliente" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="50586bf6-a74e-47d5-9c1a-1eac5d33ba7f" ChangeDateTime="07/20/2022 20:48:12">
+    <Property Name="ElementName" Value="[dbo].[Generos].[ColorDeIdentificacion]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Generos]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Color" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9b5f6b5b-d844-488e-ab14-c557e4798fc8" ChangeDateTime="07/20/2022 20:48:18">
+    <Property Name="ElementName" Value="[dbo].[Generos].[IconoDeIdentificacion]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Generos]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Icono" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="72c44079-8ef1-4866-a590-06cc3efb75ab" ChangeDateTime="07/20/2022 20:54:44">
+    <Property Name="ElementName" Value="[dbo].[CK_Roles_Column]" />
+    <Property Name="ElementType" Value="SqlCheckConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[Roles]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[CK_Roles_Nombre]" />
+  </Operation>
+</Operations>
